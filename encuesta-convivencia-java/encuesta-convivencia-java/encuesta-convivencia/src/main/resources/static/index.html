@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aquí cabemos todos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<div class="marca">
+  <span class="emoji">🤝</span>
+  <span>Aquí cabemos todos</span>
+</div>
+  <div style="display:flex; align-items:center; gap:8px;">
+    <button id="btnTextoGrande" title="Cambiar tamaño de letra">A+</button>
+    <button id="btnModoOscuro" title="Cambiar a modo oscuro">🌙</button>
+    <button id="btnInicio" class="oculto">⟵ Salir</button>
+  </div>
+</div>
+
+<div class="envoltorio">
+
+  <!-- ===================== INICIO ===================== -->
+  <!-- ===================== INICIO ===================== -->
+  <section id="vistaInicio">
+    <div class="lobby">
+
+      <div class="burbuja b1"></div>
+      <div class="burbuja b2"></div>
+      <div class="burbuja b3"></div>
+      <div class="burbuja b4"></div>
+
+      <div class="coro-avatares">
+        <span style="--i:0">🧒🏻</span>
+        <span style="--i:1">👧🏽</span>
+        <span style="--i:2">🧑🏿</span>
+        <span style="--i:3">👦🏼</span>
+        <span style="--i:4">🧒🏾</span>
+      </div>
+
+      <h1 class="lobby-titulo">Aquí <span class="resalte">cabemos</span> todos</h1>
+      <p class="lobby-sub">Solo toma unos minutos. Tus respuestas son confidenciales: únicamente las revisa el equipo de trabajo social para ayudarte y hacer del colegio un lugar más seguro para todos.</p>
+
+      <div class="opciones-inicio">
+        <button class="tarjeta-inicio estudiante" id="btnSoyEstudiante">
+          <div class="icono">🧑‍🎓</div>
+          <h3>Soy estudiante</h3>
+          <p>Quiero responder la encuesta</p>
+        </button>
+        <button class="tarjeta-inicio admin" id="btnSoyAdmin">
+          <div class="icono">👩‍🏫</div>
+          <h3>Soy trabajador/a social</h3>
+          <p>Quiero ver los resultados</p>
+        </button>
+      </div>
+
+      <div class="lobby-valores">
+        <span class="valor-chip" style="--i:0">🤝 Respeto</span>
+        <span class="valor-chip" style="--i:1">👂 Escucha</span>
+        <span class="valor-chip" style="--i:2">🌈 Diversidad</span>
+        <span class="valor-chip" style="--i:3">🛡️ Cuidado</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== CURSO (previo a encuesta) ===================== -->
+  <section id="vistaCurso" class="oculto">
+    <div class="campo-curso">
+      <h2>Antes de empezar…</h2>
+      <p style="color:var(--texto-suave); margin-top:6px;">Cuéntanos un poco sobre ti</p>
+
+      <div class="fila-campos">
+        <div class="campo">
+          <label for="inputNombre">Nombre</label>
+          <input type="text" id="inputNombre" placeholder="Tu nombre">
+        </div>
+        <div class="campo">
+          <label for="inputApellido">Apellido</label>
+          <input type="text" id="inputApellido" placeholder="Tu apellido">
+        </div>
+      </div>
+
+      <div class="fila-campos">
+        <div class="campo">
+          <label for="inputEdad">Edad</label>
+          <input type="number" id="inputEdad" placeholder="Ej: 12" min="5" max="25">
+        </div>
+        <div class="campo">
+          <label for="inputCurso">Curso</label>
+          <input type="text" id="inputCurso" placeholder="Ej: 7°B">
+        </div>
+      </div>
+
+      <div class="campo campo-ancho">
+        <label for="inputInstitucion">Nombre de la institución</label>
+        <input type="text" id="inputInstitucion" placeholder="Ej: Colegio San José">
+      </div>
+
+      <button class="boton-grande" id="btnEmpezarEncuesta">Comenzar encuesta 🚀</button>
+      <div class="aviso-error oculto" id="avisoErrorCurso">Por favor completa todos los campos.</div>
+    </div>
+  </section>
+
+  <!-- ===================== ENCUESTA ===================== -->
+  <section id="vistaEncuesta" class="oculto">
+    <div class="progreso-camino" id="progresoCamino"></div>
+    <div class="tarjeta-pregunta">
+      <div class="numero-pregunta" id="numeroPregunta"></div>
+      <div class="texto-pregunta" id="textoPregunta"></div>
+      <div class="opciones-emoji" id="opcionesEmoji"></div>
+      <div class="nav-preguntas">
+        <button id="btnAnterior">⟵ Anterior</button>
+        <button id="btnSiguiente" disabled>Siguiente ⟶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESUMEN ANTES DE ENVIAR ===================== -->
+  <section id="vistaResumen" class="oculto">
+    <div class="tarjeta-pregunta" style="text-align:left;">
+      <h2 style="text-align:center;">Antes de enviar, revisa tus respuestas 👀</h2>
+      <p style="color:var(--texto-suave); text-align:center; margin-top:6px;">Si quieres cambiar algo, puedes volver atrás.</p>
+      <div id="listaResumen" class="lista-resumen"></div>
+      <div class="nav-preguntas">
+        <button id="btnVolverARevisar">⟵ Volver a revisar</button>
+        <button class="boton-grande" id="btnConfirmarEnvio" style="margin-top:0;">Confirmar y enviar ✅</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTADO ESTUDIANTE ===================== -->
+  <section id="vistaResultadoAlumno" class="oculto">
+    <div class="resultado-alumno">
+      <h2>¡Gracias por responder! 🌟</h2>
+      <div class="semaforo-mini">
+        <div class="luz" id="luzAlumnoRoja"></div>
+        <div class="luz" id="luzAlumnoAmarilla"></div>
+        <div class="luz" id="luzAlumnoVerde"></div>
+      </div>
+      <div id="mensajeAlumno" class="mensaje-alumno"></div>
+
+      <div id="ayudaEmergencia" class="ayuda-emergencia oculto">
+        <div class="ayuda-titulo">📞 Si necesitas hablar con alguien ahora, estas líneas son gratis y confidenciales:</div>
+        <a class="ayuda-linea" href="tel:141">
+          <span class="ayuda-numero">141</span>
+          <span class="ayuda-detalle">ICBF — Protección a niños, niñas y adolescentes (24 horas, todos los días)</span>
+        </a>
+        <a class="ayuda-linea" href="tel:106">
+          <span class="ayuda-numero">106</span>
+          <span class="ayuda-detalle">Línea de apoyo emocional y en crisis</span>
+        </a>
+        <a class="ayuda-linea" href="tel:123">
+          <span class="ayuda-numero">123</span>
+          <span class="ayuda-detalle">Policía Nacional — atención inmediata</span>
+        </a>
+      </div>
+
+      <button class="boton-grande" id="btnVolverInicio" style="margin-top:22px;">Volver al inicio</button>
+    </div>
+  </section>
+
+  <!-- ===================== LOGIN / REGISTRO ADMIN ===================== -->
+  <section id="vistaLoginAdmin" class="oculto">
+    <div class="login-admin">
+
+      <div class="pestanas-login">
+        <button class="pestana activa" id="pestanaLogin" type="button">Iniciar sesión</button>
+        <button class="pestana" id="pestanaRegistro" type="button">Crear cuenta</button>
+      </div>
+
+      <!-- ---- Formulario de login ---- -->
+      <div id="formularioLogin">
+        <p style="color:var(--texto-suave); font-size:0.9em; margin-top:14px;">Ingresa tu usuario y contraseña.</p>
+        <input type="text" id="inputUsuarioLogin" placeholder="Usuario" autocomplete="username">
+        <input type="password" id="inputContrasenaLogin" placeholder="Contraseña" autocomplete="current-password">
+        <button class="boton-grande" id="btnEntrarAdmin">Entrar</button>
+        <div class="aviso-error oculto" id="avisoError">Usuario o contraseña incorrectos.</div>
+      </div>
+
+      <!-- ---- Formulario de registro ---- -->
+      <div id="formularioRegistro" class="oculto">
+        <p style="color:var(--texto-suave); font-size:0.9em; margin-top:14px;">Crea tu cuenta de profesor/a.</p>
+        <input type="text" id="inputNombreCompletoRegistro" placeholder="Tu nombre completo">
+        <input type="text" id="inputInstitucionRegistro" placeholder="Institución donde trabajas">
+        <input type="text" id="inputUsuarioRegistro" placeholder="Elige un usuario" autocomplete="username">
+        <input type="password" id="inputContrasenaRegistro" placeholder="Elige una contraseña (mín. 6 caracteres)" autocomplete="new-password">
+        <input type="text" id="inputCodigoInvitacion" placeholder="Código de invitación">
+        <button class="boton-grande" id="btnRegistrarAdmin">Crear cuenta</button>
+        <div class="aviso-error oculto" id="avisoErrorRegistro"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== DASHBOARD ADMIN ===================== -->
+  <section id="vistaAdmin" class="oculto">
+    <div class="fila-acciones-admin">
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <select id="filtroInstitucion">
+          <option value="todas">Todas las instituciones</option>
+        </select>
+        <select id="filtroCurso">
+          <option value="todos">Todos los cursos</option>
+        </select>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="actualizado" id="ultimaActualizacion"></span>
+        <button class="btn-exportar" id="btnExportarExcel">⬇️ Excel</button>
+        <button class="btn-exportar" id="btnExportarPdf">🖨️ PDF</button>
+        <button class="btn-exportar" id="btnVerDocentes">👩‍🏫 Profesores</button>
+        <button class="btn-borrar" id="btnBorrarTodo">Borrar todas las respuestas</button>
+      </div>
+    </div>
+    <div id="contenidoAdmin"></div>
+  </section>
+  <!-- ===================== GESTION DE PROFESORES ===================== -->
+  <section id="vistaDocentes" class="oculto">
+    <div class="fila-acciones-admin">
+      <h2 style="margin:0;">Profesores registrados</h2>
+      <button id="btnVolverAlPanel">⟵ Volver al panel</button>
+    </div>
+    <div id="listaDocentes" class="panel"></div>
+  </section>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
